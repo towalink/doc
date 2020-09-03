@@ -41,9 +41,9 @@ The Towalink Controller can be installed on Debian Linux or Alpine Linux. Debian
 
 Run the following command as user with root privileges to quickly and conveniently install the Towalink Controller:
 
-```shell
-bash <(wget -qO- https://install.towalink.net/controller/)
-```
+.. code-block:: shell
+
+   bash <(wget -qO- https://install.towalink.net/controller/)
 
 Configuring your Towalink installation
 ======================================
@@ -51,12 +51,20 @@ Configuring your Towalink installation
 On the controller, the "tlm" tool (Towalink Manager) is used to configure Sites and Nodes.
 In the following, a simple installation that uses defaults is shown to get you started quickly. Please see the other parts of the documentation for any advanced features and for customizing your installation.
 
+Note that the "tlm" tool is installed in a Python virtual environment by default. Thus you need to activate that environment to be able to call "tlm" by issuing:
+
+.. code-block:: shell
+
+   source /opt/towalink/venv/bin/activate
+
 Adding a Site
 -------------
 
 To add your first Site (in the example "mysite1"), issue the following command on the Controller:
 
-    tlm add site mysite1
+.. code-block:: shell
+
+   tlm add site mysite1
 
 If this is your first command execured, this creates the configuration directory "/etc/towalink" and also creates default template files. Afterwards the Site is created as specified.
 
@@ -65,14 +73,18 @@ Adding a Node
 
 To add your first Node (in the example "primary") on your first Site (in the example "mysite1"), issue the following command:
 
-    tlm add node primary.mysite1
+.. code-block:: shell
+
+   tlm add node primary.mysite1
 
 Committing the configuration
 ----------------------------
 
 Once you added all Sites and Nodes as needed and - if needed - other configuration is done, commit your changes using the following command:
 
-    tlm commit all
+.. code-block:: shell
+
+   tlm commit all
 
 This creates a new config version that can be provisioned to the Nodes.
 
@@ -81,7 +93,9 @@ Attaching the Nodes
 
 Now it's time to pair your Nodes (router devices) with the Controller. This can be done with the following command and only needs to be done once for each Node:
 
-    tlm attach node primary.mysite1
+.. code-block:: shell
+
+   tlm attach node primary.mysite1
 
 The Node needs to be active and requesting a configuration by running the Node bootstrap script (execute "bash <(wget -qO- https://nodeinstall.towalink.net/bootstrap/) -v -c <hostname/IP of controller>" on the new device). Follow the steps shown to finish the pairing.
 
@@ -90,4 +104,6 @@ Activating the configuration
 
 The latest configuration can be sent to all the Nodes with the following command:
 
-    tlm activate all
+.. code-block:: shell
+
+   tlm activate all
