@@ -18,19 +18,23 @@ The machine needs to have Internet access to be able to download needed software
 Installation
 ------------
 
-Run the following command as user with root privileges to quickly and conveniently install the Towalink Controller:
+Run the following command as user with root privileges to quickly and conveniently install the Towalink Controller. It downloads and executes a bash script. The script is a wrapper around an Ansible playbook used to install the Controller. Before executing the playbook, Ansible and git are installed as prerequisites, and the environment is prepared.
 
 .. code-block:: shell
 
    bash <(wget -qO- https://install.towalink.net/controller/)
 
-Optionally, you may add parameters to control what's happening and to already provide answers to questions that are asked later (to thus avoid interactive install).
+In case you do not have a shell that supports this notation (like ash on Ansible), wrap it into a bash command like this:
+
+.. code-block:: shell
+
+   bash -c "bash <(wget -qO- https://install.towalink.net/controller/)"
+
+Optionally, you may add parameters to control what's happening and to already provide answers to questions that would be asked later (to thus avoid interactive install).
 
 .. code-block:: shell
 
    bash <(wget -qO- https://install.towalink.net/controller/) [<parameters...>]
-
-The script is a wrapper around an Ansible playbook used to install the Controller. Before executing the playbook, Ansible and git are installed as prerequisites, and the environment is prepared.
 
 The mentioned parameters can be any command line arguments that are available for an Ansible playbook. The following variables can be provided with the "-e" parameter:
 
