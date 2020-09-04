@@ -97,7 +97,7 @@ Now it's time to pair your Nodes (router devices) with the Controller. This can 
 
    tlm attach node primary.mysite1
 
-The Node needs to be active and requesting a configuration by running the Node bootstrap script (execute "bash <(wget -qO- https://nodeinstall.towalink.net/bootstrap/) -v -c <hostname/IP of controller>" on the new device). Follow the steps shown to finish the pairing.
+The Node needs to be active and requesting a configuration by running the Node bootstrap script (execute "bash <(wget -qO- https://install.towalink.net/node/) -v -c <hostname/IP of controller>" on the new device). Follow the steps shown to finish the pairing.
 
 Activating the configuration
 ----------------------------
