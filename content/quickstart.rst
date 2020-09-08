@@ -37,7 +37,7 @@ Alpine Linux and Raspbian are fully supported as operating system for the Nodes.
 Installing the Towalink Controller
 ==================================
 
-The Towalink Controller can be installed on Debian Linux or Alpine Linux. Debian Linux is preferred since only a limited feature set is supported on Alpine. Use a Debian 10 Buster installation that has access to the Internet to be able to download needed software.
+The Towalink Controller needs to be installed on Debian Linux. Use a Debian 10 Buster installation that has access to the Internet to be able to download needed software.
 
 Run the following command as user with root privileges to quickly and conveniently install the Towalink Controller:
 

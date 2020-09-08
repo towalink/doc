@@ -9,9 +9,9 @@ The Towalink Installer is used to install the Towalink Controller. Doing so is t
 Environment
 -----------
 
-The Towalink Installer can be used on Debian Linux or Alpine Linux. Debian Linux is preferred since only a limited feature set is supported on Alpine. Use a Debian 10 Buster installation. Installation on Ubuntu might work as well but this is not tested so that issues can be expected.
+The Towalink Installer can be used on Debian Linux. Use a Debian 10 Buster installation. Installation on Ubuntu might work as well but this is not tested so that issues can be expected.
 
-The Towalink Controller can be run on top of any virtual machine (or physical server), be it within an on-premise installation or in the public cloud (using AWS EC2, Google Compute Engine, Azure Virtual Machines, etc.).
+The Towalink Controller can be run on top of any virtual machine (or physical server), be it within an on-premise installation or in the public cloud (using AWS EC2, Google Compute Engine, Azure Virtual Machines, or other vendors).
 
 The machine needs to have Internet access to be able to download needed software. Later on, the Internet access is needed to connect with the Towalink Nodes on the sites to be connected with each other.
 
