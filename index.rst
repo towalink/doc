@@ -16,6 +16,7 @@ Towalink is a multi-site connectity solution. It connects sites using point-to-p
    :caption: Contents:
 
    content/quickstart
+   content/main
    content/command_reference
 
 :ref:`search`

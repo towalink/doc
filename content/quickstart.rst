@@ -1,8 +1,8 @@
 Overview & Quickstart
 *********************
 
-The Towalink multi-site connectity solution consists of two parts: the Controller and the Nodes.
-Towalink is built around proven technology like BGP routing (using Bird) and VPN tunnels (WireGuard) to therewith deliver a powerful but still simple connectivity solution.
+The Towalink multi-site connectity solution consists of two parts: the Controller and the Nodes (router devices).
+Towalink is built around proven technology like BGP routing (using Bird) and VPN tunnels (WireGuard) to therewith deliver a powerful but still simple connectivity solution. Node configuration is managed using Ansible (securely via ssh over WireGuard).
 
 The Towalink Controller
 =======================
@@ -91,13 +91,15 @@ This creates a new config version that can be provisioned to the Nodes.
 Attaching the Nodes
 -------------------
 
-Now it's time to pair your Nodes (router devices) with the Controller. This can be done with the following command and only needs to be done once for each Node:
+Now it's time to pair your Nodes with the Controller. This can be done with the following command and only needs to be done once for each Node:
 
 .. code-block:: shell
 
    tlm attach node primary.mysite1
 
 The Node needs to be active and requesting a configuration by running the Node bootstrap script (execute "bash <(wget -qO- https://install.towalink.net/node/) -v -c <hostname/IP of controller>" on the new device). Follow the steps shown to finish the pairing.
+
+After successful attachment, a WireGuard tunnel is established between Controller and Node. The Node can then be managed using Ansible.
 
 Activating the configuration
 ----------------------------

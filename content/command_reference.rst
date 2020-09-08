@@ -1,52 +1,6 @@
 Command Reference
 *****************
 
-Towalink Controller installation
-================================
-
-The Towalink Installer is used to install the Towalink Controller. Doing so is the first step in creating a new Towalink installation.
-
-Environment
------------
-
-The Towalink Installer can be used on Debian Linux. Use a Debian 10 Buster installation. Installation on Ubuntu might work as well but this is not tested so that issues can be expected.
-
-The Towalink Controller can be run on top of any virtual machine (or physical server), be it within an on-premise installation or in the public cloud (using AWS EC2, Google Compute Engine, Azure Virtual Machines, or other vendors).
-
-The machine needs to have Internet access to be able to download needed software. Later on, the Internet access is needed to connect with the Towalink Nodes on the sites to be connected with each other.
-
-Installation
-------------
-
-Run the following command as user with root privileges to quickly and conveniently install the Towalink Controller. It downloads and executes a bash script. The script is a wrapper around an Ansible playbook used to install the Controller. Before executing the playbook, Ansible and git are installed as prerequisites, and the environment is prepared.
-
-.. code-block:: shell
-
-   bash <(wget -qO- https://install.towalink.net/controller/)
-
-In case you do not have a shell that supports this notation (like ash on Ansible), wrap it into a bash command like this:
-
-.. code-block:: shell
-
-   bash -c "bash <(wget -qO- https://install.towalink.net/controller/)"
-
-Optionally, you may add parameters to control what's happening and to already provide answers to questions that would be asked later (to thus avoid interactive install).
-
-.. code-block:: shell
-
-   bash <(wget -qO- https://install.towalink.net/controller/) [<parameters...>]
-
-The mentioned parameters can be any command line arguments that are available for an Ansible playbook. The following variables can be provided with the "-e" parameter:
-
-* | "-e input_welcomeprompt=skip"
-  | Do not show the welcome prompt.
-* | "-e input_monitoring=y" or "-e input_monitoring=n"
-  | Specifies whether monitoring shall be installed or not. If not specified, it is asked interactively whether to install or not.
-* | "-e python_venv="
-  | Do not install within a Python virtual environment. The installation is done in "/opt/towalink/venv" by default.
-* | "-e tlm_path=/home/towalink/controller_tlm"
-  | Do not install the tlm tool from PyPi but install it locally from the path specified. This is used for development and testing.
-
 "tlm" tool on the Towalink Controller
 =====================================
 
