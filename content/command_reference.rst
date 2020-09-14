@@ -41,7 +41,7 @@ Command:
 
 Parameters:
 
-   <sitename>: Name of the Site whose Nodes shall be shown; "all" for Nodes of all Sites
+   <sitename>: name of the Site whose Nodes shall be shown; "all" for Nodes of all Sites
 
 Examples:
 
@@ -84,7 +84,7 @@ Command:
     
 Parameters:
 
-   <sitename>: Name of the Site whose configuration shall be displayed
+   <sitename>: name of the Site whose configuration shall be displayed
 
 Example:
 
@@ -124,7 +124,7 @@ Command:
     
 Parameters:
 
-   <sitename>: Name of the Site whose complete configuration shall be displayed
+   <sitename>: name of the Site whose complete configuration shall be displayed
 
 Example:
 
@@ -168,7 +168,7 @@ Command:
     
 Parameters:
 
-   <sitename>: Name of the Site that shall be added
+   <sitename>: name of the Site that shall be added
 
 Example:
 
@@ -207,7 +207,7 @@ Command:
     
 Parameters:
 
-   <sitename>: Name of the Site that shall be added
+   <sitename>: name of the Site that shall be added
 
 Example:
 
@@ -251,8 +251,8 @@ Command:
     
 Parameters:
 
-   <attr>: Name of the attribute that shall be set
-   <value>: New value for the attribute; special value "empty" to remove the attribute
+   <attr>: name of the attribute that shall be set
+   <value>: new value for the attribute; special value "empty" to remove the attribute
 
 Example:
 
@@ -271,9 +271,9 @@ Command:
     
 Parameters:
 
-   <sitename>: Name of the Site whose configuration shall be changed
-   <attr>: Name of the attribute that shall be set
-   <value>: New value for the attribute; special value "empty" to remove the attribute
+   <sitename>: name of the Site whose configuration shall be changed
+   <attr>: name of the attribute that shall be set
+   <value>: new value for the attribute; special value "empty" to remove the attribute
 
 Example:
 
@@ -294,8 +294,8 @@ Parameters:
 
    <nodeid>: numeric node identifier
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
-   <attr>: Name of the attribute that shall be set
-   <value>: New value for the attribute; special value "empty" to remove the attribute    
+   <attr>: name of the attribute that shall be set
+   <value>: new value for the attribute; special value "empty" to remove the attribute    
 
 Example:
 
@@ -357,7 +357,7 @@ Command:
     
 Parameters:
 
-   <sitename>: Name of the Site whose configuration shall be committed
+   <sitename>: name of the Site whose configuration shall be committed
 
 Example:
 
@@ -420,8 +420,8 @@ Command:
     
 Parameters:
 
-   <sitename>: Name of the Site whose configuration shall be activated
-   <version>: Version number of the configuration; "latest" is default
+   <sitename>: name of the Site whose configuration shall be activated
+   <version>: version number of the configuration; "latest" is default
 
 Examples:
 
@@ -441,7 +441,7 @@ Parameters:
 
    <nodeid>: numeric node identifier
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
-   <version>: Version number of the configuration; "latest" is default    
+   <version>: version number of the configuration; "latest" is default    
 
 Example:
 
@@ -477,6 +477,129 @@ Example:
 
    tlm attach node primary.mysite1
 
+Executing Ansible for Node(s)
+-----------------------------
+
+Executing Ansible for all Nodes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Command:
+
+.. code-block:: shell
+
+   tlm ansible all <ansible arguments...>
+    
+Parameters:
+
+   <ansible arguments...>: arguments for Ansible
+
+Example:
+
+.. code-block:: shell
+
+   tlm ansible all all -a whoami
+
+Executing Ansible for all Nodes of a Site
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Command:
+
+.. code-block:: shell
+
+   tlm ansible site <sitename> <ansible arguments...>
+    
+Parameters:
+
+   <sitename>: name of the Site for whose Nodes Ansible shall be called
+   <ansible arguments...>: arguments for Ansible
+
+Examples:
+
+.. code-block:: shell
+
+   tlm ansible site mysite1 all -a whoami
+
+Executing Ansible for a single Node
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Command:
+
+    tlm ansible node <nodeid>|<nodename.sitename> <ansible arguments...>
+    
+Parameters:
+
+   <nodeid>: numeric node identifier
+   <nodename.sitename>: name of the Node within the given Site (identified by its name)
+   <ansible arguments...>: arguments for Ansible
+
+Example:
+
+.. code-block:: shell
+
+   tlm ansible node 15 all -a whoami
+   tlm ansible node primary.mysite1 all -a whoami
+
+Executing Ansible Playbook for Node(s)
+--------------------------------------
+
+Executing Ansible Playbook for all Nodes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Command:
+
+.. code-block:: shell
+
+   tlm ansible_playbook all <ansible_playbook arguments...>
+    
+Parameters:
+
+   <ansible_playbook arguments...>: arguments for Ansible Playbook
+
+Example:
+
+.. code-block:: shell
+
+   tlm ansible_playbook all myplaybook.yml -e test_variable="test"
+
+Executing Ansible Playbook for all Nodes of a Site
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Command:
+
+.. code-block:: shell
+
+   tlm ansible_playbook site <sitename> <ansible_playbook arguments...>
+    
+Parameters:
+
+   <sitename>: name of the Site for whose Nodes the Ansible Playbook shall be executed
+   <ansible_playbook arguments...>: arguments for Ansible Playbook
+
+Examples:
+
+.. code-block:: shell
+
+   tlm ansible_playbook site mysite1 myplaybook.yml -e test_variable="test"
+
+Executing Ansible Playbook for a single Node
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Command:
+
+    tlm ansible_playbook node <nodeid>|<nodename.sitename> <ansible_playbook arguments...>
+    
+Parameters:
+
+   <nodeid>: numeric node identifier
+   <nodename.sitename>: name of the Node within the given Site (identified by its name)
+   <ansible_playbook arguments...>: arguments for Ansible Playbook
+
+Example:
+
+.. code-block:: shell
+
+   tlm ansible_playbook node 15 myplaybook.yml -e test_variable="test"
+   tlm ansible_playbook node primary.mysite1 myplaybook.yml -e test_variable="test"
 
 Setting the debug level
 -----------------------
@@ -489,7 +612,7 @@ You may configure the verbosity of the command by setting the log level paramete
 
 Parameters:
 
-   <loglevel>: Valid values are "debug", "info", "warning", and "error".
+   <loglevel>: valid values are "debug", "info", "warning", and "error"
 
 Example:
 
