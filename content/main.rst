@@ -46,7 +46,7 @@ Instead of looking into the "config.toml" files to see the attribute-value pairs
    tlm show site <sitename>
    tlm show node <nodeid>|<nodename.sitename>
 
-The complete configuration of a Site or Node that is obtained by evaluating the configuration hierarchy can be displayed using the tlm tool, too. Use the "show_all" command to see the complete attribute-value pairs to be applied on the respective level:
+The "complete configuration" of a Site or Node that is obtained by evaluating the configuration hierarchy can be displayed using the tlm tool, too. Use the "show_all" command to see the complete attribute-value pairs to be applied on the respective level:
 
 .. code-block:: shell
 
@@ -55,7 +55,35 @@ The complete configuration of a Site or Node that is obtained by evaluating the 
 
 See the :ref:`chapter_commandreference` for details.
 
+Generated Configuration
+^^^^^^^^^^^^^^^^^^^^^^^
 
+A "generated configuration" is created and updated automatically and stored in "/etc/towalink/generated/config.toml". It only contains attribute-value pairs, no service configuration files. For instance, it stores encryption keys for the VPN links to be created between Nodes. You can modify this configuration, but there is usually no need to do so.
+
+Effective Configuration
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The "effective configuration" is created for each node based on the "complete configuration" (obtained by evaluating the configuration hierarchy) and the "generated configuration". It is stored below "/etc/towalink/effective". This is the configuration that gets provisioned towards the individual Nodes.
+
+For each Node, a yaml file with attribute-value pairs is stored. By convention, it contains some generic attributes and the needed attributes for each service. For instance, attributes for the Bird routing daemon are prefixed by "bird\_". Additionally, the service configuration files (from the complete configuration) are available. All service configuration files that are ".jinja" template files are processed using the yaml file with the attribute-value pairs.
+
+The "effective configuration" is versioned, i.e. there can be multiple config versions for each Node. Each time, "tlm commit..." is executed for a Node and there are configuration changes, a new config version is created.
+
+.. code-block:: shell
+
+   tlm commit all
+   tlm commit site <sitename>
+   tlm commit node <nodeid>|<nodename.sitename>
+
+All config versions of a Node are mirrored to the respective Node. Note that commiting the configuration and mirroring it to the Node does not activate the new configuration on the Node. This is done separately.
+
+Using the "tlm activate..." command, one of the available configuration versions can be activated on one or many Nodes. For instance, the following command activated the latest configuration on each Node:
+
+.. code-block:: shell
+
+   tlm activate all
+
+See the :ref:`chapter_commandreference` for details and information on more fine-grained control of configuration activation.
 
 Routing Configuration
 ---------------------
@@ -84,6 +112,7 @@ The default Bird configuration is designed and implemented as follows:
 * You may overwrite global "bird_*.conf" configuration files on Site level or on Node level as needed.
 * You may modify times or any other configuration as needed.
 * You may create a completely different configuration if desired (the naming convention "bird_*.conf" needs to be used, however).
+
 
 Towalink Controller Installation
 ================================
