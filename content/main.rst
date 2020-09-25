@@ -124,7 +124,7 @@ Environment
 
 The Towalink Installer can be used on Debian Linux. Use a Debian 10 Buster installation. Installation on Ubuntu might work as well but this is not tested so that issues can be expected.
 
-The Towalink Controller can be run on top of any virtual machine (or physical server), be it within an on-premise installation or in the public cloud (using AWS EC2, Google Compute Engine, Azure Virtual Machines, or other vendors).
+The Towalink Controller can be run on top of any virtual machine (or physical server), be it within an on-premise installation or in the public cloud (using AWS EC2, Google Compute Engine, Azure Virtual Machines, or other vendors). Running it in a container is currently not supported since WireGuard support on the host would be required which cannot be installed automatically.
 
 The machine needs to have Internet access to be able to download needed software. Later on, the Internet access is needed to connect with the Towalink Nodes on the sites to be connected with each other.
 
@@ -159,3 +159,118 @@ The mentioned parameters can be any command line arguments that are available fo
   | Do not install within a Python virtual environment. The installation is done in "/opt/towalink/venv" by default.
 * | "-e tlm_path=/home/towalink/controller_tlm"
   | Do not install the tlm tool from PyPi but install it locally from the path specified. This is used for development and testing.
+
+
+Using the Towalink Controller
+=============================
+
+The Towalink Controller is used for managing your Towalink installation conveniently from a central place.
+
+Creating Site and Node Configuration
+------------------------------------
+
+Attaching Nodes
+---------------
+
+New Nodes need the be "paired" with the Towalink Controller. This is called "Node attachment". This is a one-time process for each new Node. Once the attachment is done, the Node maintains a WireGuard tunnel to the Controller. Via this tunnel, the Node is managed by the controller in a secure manner.
+
+Firewall
+^^^^^^^^
+
+The "tlm" tool starts a web server on port 8000 to receive configuration requests from the unconfigured  Nodes. This web server needs to be reachable for the Nodes. The port 8000/tcp only needs to be open during the Node attachment process.
+
+Server Certificate
+^^^^^^^^^^^^^^^^^^
+
+The web server of the "tlm" tool that is used for attaching the nodes requires an SSL certificate. The private key is expected in "/etc/towalink/certs/key.pem", the public key in "/etc/towalink/certs/server.pem".
+
+A certificate can be created using openssl, for instance:
+
+.. code-block:: shell
+   openssl req -new -x509 -keyout /etc/towalink/certs/key.pem -out /etc/towalink/certs/server.pem
+
+Note that the common name of the certificate needs to match the hostname of the Towalink Controller.
+
+Be aware that the Nodes need to be able to verify the certificate chain for a successful attach. In case of a self-signed certificate, you thus need to provide the CA certificate or the server certificate to the Nodes.
+
+Name Resolution
+^^^^^^^^^^^^^^^
+
+You need to make sure that the DNS name resolution is working properly on your Towalink Controller. This means that the Controller's hostname needs to resolve to the Controller's IP address (entry in "/etc/hosts" for the hostname is not just 127.0.0.1 but the interface IP address). In addition, the Controller needs to be able to resolve the hostnames of the Nodes to be attached to the Nodes' IP addresses using which the Nodes can be reached.
+
+.. attention::
+   If name resolution is not working properly, you won't be able to attach Nodes successfully!
+
+Attachment Process
+^^^^^^^^^^^^^^^^^^
+
+The attachment process is initiated by the following command:
+
+.. code-block:: shell
+
+   tlm attach node <nodeid>|<nodename.sitename>
+
+Once started, the "tlm" tool starts the web server and collects Nodes' connection attempts for 20 seconds. Afterwards you select which of these Nodes to configure or interrupt the process.
+
+The next connection attempt of the selected Node provides data on the Node and is answered with needed configuration information to establish the WireGuard management tunnel for that Node. Once the data has been exchanged, the "tlm" tool configures the WireGuard management tunnel endpoint on the Controller and waits for the management tunnel to come up.
+
+Once the management tunnel is working, the "tlm" tool prepares the new Node using an Ansible playbook. Ansible connects securely via ssh over the WireGuard management tunnel. The "tlm" tool prints the Ansible playbook command that is used to prepare the Node so that you can reissue the command in the case of problems.
+
+After the Node has been prepared using Ansible, the attachment process is finished. You now can manage the Node using the "tlm" tool.
+
+Managing Nodes
+--------------
+
+
+Using Ansible
+^^^^^^^^^^^^^
+
+.. code-block:: shell
+
+   tlm ansible node <nodeid>|<nodename.sitename> <ansible arguments...>
+
+.. code-block:: shell
+
+   tlm ansible_playbook node <nodeid>|<nodename.sitename> <ansible_playbook arguments...>
+
+Preparing and Mirroring Node Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: shell
+
+   tlm commit node <nodeid>|<nodename.sitename>
+
+Activating Node Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: shell
+
+   tlm activate node <nodeid>|<nodename.sitename> <version>
+
+
+
+Preparing Towalink Nodes
+========================
+
+Environment
+-----------
+Alpine or Raspbian
+
+
+Name Resolution
+---------------
+
+bootstrap.sh
+  "hostname -f" can fail if own hostname is not resolvable
+  then something like "hostname: dh-wgtest1: Host not found" is logged
+
+Bootstrap Script
+----------------
+
+
+Certificate Chain
+^^^^^^^^^^^^^^^^^
+
+Certificate on Node expected in
+    /etc/towalink/bootstrap/cacert.pem
+    otherwise: Bootstrap config download failed with http response 00060. Ignoring and continuing
