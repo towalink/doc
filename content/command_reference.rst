@@ -435,7 +435,9 @@ Activate the configuration of a single Node
 
 Command:
 
-    tlm activate node <nodeid>|<nodename.sitename> <version>
+.. code-block:: shell
+
+   tlm activate node <nodeid>|<nodename.sitename> <version>
     
 Parameters:
 
@@ -524,7 +526,9 @@ Executing Ansible for a single Node
 
 Command:
 
-    tlm ansible node <nodeid>|<nodename.sitename> <ansible arguments...>
+.. code-block:: shell
+
+   tlm ansible node <nodeid>|<nodename.sitename> <ansible arguments...>
     
 Parameters:
 
@@ -586,7 +590,9 @@ Executing Ansible Playbook for a single Node
 
 Command:
 
-    tlm ansible_playbook node <nodeid>|<nodename.sitename> <ansible_playbook arguments...>
+.. code-block:: shell
+
+   tlm ansible_playbook node <nodeid>|<nodename.sitename> <ansible_playbook arguments...>
     
 Parameters:
 
