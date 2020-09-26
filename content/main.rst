@@ -157,8 +157,13 @@ The mentioned parameters can be any command line arguments that are available fo
   | Specifies whether monitoring shall be installed or not. If not specified, it is asked interactively whether to install or not.
 * | "-e python_venv="
   | Do not install within a Python virtual environment. The installation is done in "/opt/towalink/venv" by default.
+
+Parameters used for development and testing purposes:
+
+* | "-e pip_test=yes"
+  | Do install the Towalink module from the PyPi test repository and not from the main repository.
 * | "-e tlm_path=/home/towalink/controller_tlm"
-  | Do not install the tlm tool from PyPi but install it locally from the path specified. This is used for development and testing.
+  | Do not install the tlm tool from PyPi but install it locally from the path specified.
 
 
 Using the Towalink Controller
@@ -166,8 +171,39 @@ Using the Towalink Controller
 
 The Towalink Controller is used for managing your Towalink installation conveniently from a central place.
 
+The tlm Tool
+------------
+
+The "tlm" tool is used to manage your Towalink installation. It was installed during the installation of the Towalink Controller as described above.
+
+In case you installed using the default parameters, the "tlm" tool was installed in a Python virtual environment. Therefore you need to enter this environment before using the "tlm" tool. This is done using the following command:
+
+.. code-block:: shell
+
+   source /opt/towalink/venv/bin/activate
+
+Afterwards, you can call the "tlm" tool with the parameters needed. Here is the generic usage - but just see the next sections on practical examples:
+
+.. code-block:: shell
+
+   tlm [-?|--help] [-l|--loglevel debug|info|error] <operation> <entity> [<arguments...>]
+
 Creating Site and Node Configuration
 ------------------------------------
+
+Use the "tlm" tool to create new Sites as needed using the "add site" operation:
+
+.. code-block:: shell
+
+   tlm add site mysite1
+
+Similarly, you can create Nodes within the Sites as needed using the "add node" operation:
+
+.. code-block:: shell
+
+   tlm add node primary.mysite1
+
+Each Node gets a Node identifier assigned. Use either this Node identifier (<nodeid>) or the notation "<nodename>.<sitename>" to identify a Node when using the "tlm" tool.
 
 Attaching Nodes
 ---------------
@@ -221,6 +257,7 @@ After the Node has been prepared using Ansible, the attachment process is finish
 Managing Nodes
 --------------
 
+The Node configuration is managed directly using the "tlm". Any other management tasks regarding the Nodes are done using Ansible. You can use any Ansible functionality (Ansible and Ansible Playbooks) to do this.
 
 Using Ansible
 ^^^^^^^^^^^^^

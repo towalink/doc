@@ -19,7 +19,7 @@ import os
 
 project = 'Towalink'
 copyright = '2020, Towalink project'
-author = 'Towalink project members'
+author = 'Towalink project'
 
 # The full version, including alpha/beta/rc tags
 release = 'v1'
