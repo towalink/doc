@@ -314,3 +314,15 @@ Certificate Chain
 Certificate on Node expected in
     /etc/towalink/bootstrap/cacert.pem
     otherwise: Bootstrap config download failed with http response 00060. Ignoring and continuing
+
+    
+Frequently Asked Questions
+==========================
+
+x
+
+Why is this project called "Towalink"?
+--------------------------------------
+
+"towa" is Japanese for "forever", "permanent". "link" relates to the English network term: "having a link", "being connected".
+The "Towalink" therewith relates to its target: providing reliable connectivity.
