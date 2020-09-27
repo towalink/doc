@@ -269,6 +269,9 @@ Using Ansible
 .. code-block:: shell
 
    tlm ansible_playbook node <nodeid>|<nodename.sitename> <ansible_playbook arguments...>
+   
+   
+"tlm ansible" and "tlm ansible_playbook" are just wrappers around Ansible and Ansible Playbooks, respectively. These wrappers add inventory information so that the Node(s)/Site(s) as specified are targeted.
 
 Preparing and Mirroring Node Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

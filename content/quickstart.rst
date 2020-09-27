@@ -109,3 +109,12 @@ The latest configuration can be sent to all the Nodes with the following command
 .. code-block:: shell
 
    tlm activate all
+
+Manage your Nodes using Ansible
+-------------------------------
+
+You can use Ansible and Ansible Playbooks to manage your Nodes like this:
+
+.. code-block:: shell
+
+   tlm ansible node primary.mysite1 all -a whoami
