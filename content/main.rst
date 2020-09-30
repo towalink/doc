@@ -259,8 +259,13 @@ Managing Nodes
 
 The Node configuration is managed directly using the "tlm". Any other management tasks regarding the Nodes are done using Ansible. You can use any Ansible functionality (Ansible and Ansible Playbooks) to do this.
 
+Depending on the "tlm" command, either a single Node, all Nodes of a Site, or the whole installation can be targeted. See the :ref:`chapter_commandreference` for details.
+
+
 Using Ansible
 ^^^^^^^^^^^^^
+
+Ansible and Ansible Playbooks can be called using the following commands:
 
 .. code-block:: shell
 
@@ -276,6 +281,8 @@ Using Ansible
 Preparing and Mirroring Node Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The "tlm commit" updated the effective configuration. In case the configuration changed compared to the previous one, a new configuration version is created. All available configuration versions are then mirrored to the respective Node so that the configuration becomes available there. Note that a changed configuration is not applied with this command.
+
 .. code-block:: shell
 
    tlm commit node <nodeid>|<nodename.sitename>
@@ -283,30 +290,54 @@ Preparing and Mirroring Node Configuration
 Activating Node Configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Use the "tlm activate" operation to apply a certain configuration version:
+
 .. code-block:: shell
 
-   tlm activate node <nodeid>|<nodename.sitename> <version>
+   tlm activate node <nodeid>|<nodename.sitename> [<version>]
 
+If no version is specified, the latest configuration version is activated.
 
+A symbolic link to the requested config version is set on the Node. Afterwards the changed configuration files are copied to their needed location. Finally, all services with changed configuration files are reloaded or restarted. Then the requested config version is active on the Node.
 
 Preparing Towalink Nodes
 ========================
 
+New Towalink Nodes can be easily prepared for central management by your Towalink Controller.
+
 Environment
 -----------
-Alpine or Raspbian
 
+There are currently two operating systems that are tested and known to work:
 
-Name Resolution
----------------
+* Alpine Linux (at time of writing v3.12 is current)
+* Raspberry Pi OS (previously called "Raspbian") (based on Debian v10 Buster)
 
-bootstrap.sh
-  "hostname -f" can fail if own hostname is not resolvable
-  then something like "hostname: dh-wgtest1: Host not found" is logged
+Alpine Linux uses the apk packet manager, Raspberry Pi OS the apt packet manager. Distributions based on the yum package manager (e.g. CentOS) are not yet supported.
+
+Preparation
+-----------
+
+You need to make sure that the operating system is properly installed and that you have working Internet access on the primary network interface.
+
+Check that the Node's hostname is properly set:
+
+.. code-block:: shell
+
+  hostname -f
+
+This command must return the fully qualified domain name of the Node. If this is not yet the case in your installation, you usually need to correct the "/etc/hosts" file.
+
+It is important that name resolution works properly. This means that DNS hostnames need to be resolvable towards their corresponding IP address. Make sure that the hostname of the Node itself resolves to the Node's (public) IP address and not to localhost (127.0.0.1).
 
 Bootstrap Script
 ----------------
 
+.. code-block:: shell
+
+   bash <(wget -qO- https://install.towalink.net/node/) -v -c <hostname/IP of controller>:8000
+
+as root
 
 Certificate Chain
 ^^^^^^^^^^^^^^^^^
@@ -319,7 +350,7 @@ Certificate on Node expected in
 Frequently Asked Questions
 ==========================
 
-x
+The following sections provide answers to questions that have been raised towards the Towalink project community.
 
 Why is this project called "Towalink"?
 --------------------------------------
