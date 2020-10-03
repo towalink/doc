@@ -137,12 +137,6 @@ Run the following command as user with root privileges to quickly and convenient
 
    bash <(wget -qO- https://install.towalink.net/controller/)
 
-In case you do not have a shell that supports this notation (like ash on Ansible), wrap it into a bash command like this:
-
-.. code-block:: shell
-
-   bash -c "bash <(wget -qO- https://install.towalink.net/controller/)"
-
 Optionally, you may add parameters to control what's happening and to already provide answers to questions that would be asked later (to thus avoid interactive install).
 
 .. code-block:: shell
@@ -338,6 +332,16 @@ Bootstrap Script
    bash <(wget -qO- https://install.towalink.net/node/) -v -c <hostname/IP of controller>:8000
 
 as root
+
+
+
+In case you do not have a shell that supports this notation (like ash on Alpine), wrap it into a bash command like this:
+
+.. code-block:: shell
+
+   apk add bash
+   bash -c "bash <(wget -qO- https://install.towalink.net/node/) -v -c <hostname/IP of controller>:8000"
+
 
 Certificate Chain
 ^^^^^^^^^^^^^^^^^
