@@ -327,13 +327,13 @@ It is important that name resolution works properly. This means that DNS hostnam
 Bootstrap Script
 ----------------
 
+The bootstrap scripts installs basic required packages and regularly attempts to download a Node config from the Controller. Once the Node could be configured and the management connection to the Controller is up and running, the bootstrap script exits. The bootstrap script installs itself on the Node to that it is executed on each boot.
+
+Run the following command with root permissions to install and execute the bootstrap script:
+
 .. code-block:: shell
 
    bash <(wget -qO- https://install.towalink.net/node/) -v -c <hostname/IP of controller>:8000
-
-as root
-
-
 
 In case you do not have a shell that supports this notation (like ash on Alpine), wrap it into a bash command like this:
 
@@ -342,15 +342,30 @@ In case you do not have a shell that supports this notation (like ash on Alpine)
    apk add bash
    bash -c "bash <(wget -qO- https://install.towalink.net/node/) -v -c <hostname/IP of controller>:8000"
 
+The script parameters are optional. Additional information on them:
+
+ * "-v" enables verbose logging
+ * "-c <hostname/IP of controller>:8000" denotes the Controller to connect to. If omitted, the Node attempts to find its Controller via "towalink.net"
 
 Certificate Chain
 ^^^^^^^^^^^^^^^^^
 
-Certificate on Node expected in
-    /etc/towalink/bootstrap/cacert.pem
-    otherwise: Bootstrap config download failed with http response 00060. Ignoring and continuing
+The bootstrap script attempts to download the Node configuration. For security reasons, the server SSL certificate is validated. In case of an invalid certificate, the config download is not done. You will then see the message "Bootstrap config download failed with http response 00060. Ignoring and continuing" in the log.
 
-    
+In case your Controller uses a self-signed server certificate, you need to provide the server certificate or the certificate of a trusted certification authority in the following file:
+
+.. code-block::
+    /etc/towalink/bootstrap/cacert.pem
+
+Restart the Node after providing or changing the certificate file.
+
+Recovery mechanism
+^^^^^^^^^^^^^^^^^^
+
+There exists an additional mechanism to recover Nodes that no longer have a Controller or that have other serious issues that make the management connection fail. On each boot, the bootstrap script attempts to download a recovery script from the "towalink.net" infrastructure. In case this download succeeds and the script has been validated successfully, the recovery script is executed.
+
+Once the Node gets attached to a Controller, a security token (recovery token) is generated and stored in the Controller. Only recovery scripts that contain the correct security token are executed. Due to this security measure, the "towalink.net" infrastructure can't execute any code on your Nodes so that this feature cannot be abused as a backdoor. Only in the case that a management connection could not be established and the machine has been restarted five times in a row without a successful management connection, the token security check is disabled. This feature is present to consider the case of a lost recovery token.
+
 Frequently Asked Questions
 ==========================
 
