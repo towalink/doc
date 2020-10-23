@@ -9,7 +9,7 @@ Welcome to Towalink
 Towalink is a multi-site connectity solution. It connects sites using point-to-point VPN tunnels via any available access networks. The default topology is full-mesh, but any other topology can be configured easily. It builds on proven technology like BGP routing and WireGuard. Reliable, flexible, straight-forward.
 
 .. CAUTION::
-   This project is still in creation phase. It is not yet ready to be used. Please wait until this disclaimer is removed.
+   This is a young project. It is already being used on production sites. But be aware that there are still rough edges and that it thus might not suit your needs and expectations.
 
 .. toctree::
    :maxdepth: 2
