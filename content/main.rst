@@ -1,5 +1,5 @@
-Detailled Documentation
-***********************
+Detailed Documentation
+**********************
 
 
 Towalink Overview
@@ -355,7 +355,8 @@ The bootstrap script attempts to download the Node configuration. For security r
 In case your Controller uses a self-signed server certificate, you need to provide the server certificate or the certificate of a trusted certification authority in the following file:
 
 .. code-block::
-    /etc/towalink/bootstrap/cacert.pem
+
+   /etc/towalink/bootstrap/cacert.pem
 
 Restart the Node after providing or changing the certificate file.
 
