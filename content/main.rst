@@ -5,9 +5,9 @@ Detailed Documentation
 Towalink Overview
 =================
 
-The Towalink multi-site connectity solution consists of two parts: the Controller and the Nodes.
+The Towalink multi-site connectivity solution consists of two parts: the Controller and the Nodes.
 
-The Nodes are the router devices located at the different sites that shall be interconnected with each other. The interconnection is done securely using WireGuard tunnels via any available access. The interconnection topology can be configured flexibly as needed, full-mesh is the default. The Nodes run the Bird routing daemon to provide dynamic routing using BGP. Broken links are detected quickly using BFD. Built around such proven technology, Towalink delivers a powerful but still simple connectivity solution.
+The Nodes are the router devices located at the different sites that shall be interconnected with each other. The interconnection is done securely using WireGuard tunnels via any available access. The interconnection topology can be configured flexibly as needed; full-mesh is the default. The Nodes run the Bird routing daemon to provide dynamic routing using BGP. Broken links are detected quickly using BFD. Built around such proven technology, Towalink delivers a powerful but still simple connectivity solution.
 
 The Controller manages all the Nodes conveniently from a central place. It is securely connected to the Nodes via WireGuard links. Node configuration is managed by the Controller using Ansible and rsync (securely via ssh over WireGuard).
 
@@ -23,9 +23,9 @@ Configuration
 
 One of the main purposes of Towalink is to provide a convenient way to centrally manage a fleet of routers, especially WireGuard links and Bird on the routers. Towalink has various means to ease the task.
 
-Basically, there are to kinds of configuration on the Controller: configuration files with attribute-value pairs and service configuration files.
+Basically, there are two kinds of configuration on the Controller: configuration files with attribute-value pairs and service configuration files.
 * "Configuration files with attribute-value pairs" are files in the "toml" or "yaml" format in which attribute values are assigned to attribute names. Both "toml" and "yaml" are widely used configuration file formats.
-* "Service configuration files" are the usual configuration files of services used. They can be customized using Jinja templating. For instance, the main service configuration file for the Bird routing daaemon is "bird.conf.jinja", i.e. the naming convention is the usual service configuration filename with the suffix ".jinja". The attribute-value pairs from the "configuration files with attribute-value pairs" are available for use in the Jinja templates.
+* "Service configuration files" are the usual configuration files of services used. They can be customized using Jinja templating. For instance, the main service configuration file for the Bird routing daemon is "bird.conf.jinja", i.e. the naming convention is the usual service configuration filename with the suffix ".jinja". The attribute-value pairs from the "configuration files with attribute-value pairs" are available for use in the Jinja templates.
 
 Configuration Hierarchy
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -75,7 +75,7 @@ The "effective configuration" is versioned, i.e. there can be multiple config ve
    tlm commit site <sitename>
    tlm commit node <nodeid>|<nodename.sitename>
 
-All config versions of a Node are mirrored to the respective Node. Note that commiting the configuration and mirroring it to the Node does not activate the new configuration on the Node. This is done separately.
+All config versions of a Node are mirrored to the respective Node. Note that committing the configuration and mirroring it to the Node does not activate the new configuration on the Node. This is done separately.
 
 Using the "tlm activate..." command, one of the available configuration versions can be activated on one or many Nodes. For instance, the following command activated the latest configuration on each Node:
 
@@ -202,7 +202,7 @@ Each Node gets a Node identifier assigned. Use either this Node identifier (<nod
 Attaching Nodes
 ---------------
 
-New Nodes need the be "paired" with the Towalink Controller. This is called "Node attachment". This is a one-time process for each new Node. Once the attachment is done, the Node maintains a WireGuard tunnel to the Controller. Via this tunnel, the Node is managed by the controller in a secure manner.
+New Nodes need to be "paired" with the Towalink Controller. This is called "Node attachment". This is a one-time process for each new Node. Once the attachment is done, the Node maintains a WireGuard tunnel to the Controller. Via this tunnel, the Node is managed by the controller in a secure manner.
 
 Firewall
 ^^^^^^^^

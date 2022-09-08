@@ -1,7 +1,7 @@
 Features & Benefits
 *******************
 
-Towalink interconnects multiple sites securely and flexibly. It can be considered an "SD-WAN light", a multi-site connectity solution with central configuration.
+Towalink interconnects multiple sites securely and flexibly. It can be considered an "SD-WAN light", a multi-site connectivity solution with central configuration.
 
 Towalink is built around proven technology like BGP routing (using Bird), VPN tunnels (WireGuard) and Ansible to therewith deliver a powerful but still simple connectivity solution.
 

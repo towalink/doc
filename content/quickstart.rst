@@ -1,7 +1,7 @@
 Overview & Quickstart
 *********************
 
-The Towalink multi-site connectity solution consists of two parts: the Controller and the Nodes (router devices).
+The Towalink multi-site connectivity solution consists of two parts: the Controller and the Nodes (router devices).
 Towalink is built around proven technology like BGP routing (using Bird) and VPN tunnels (WireGuard) to therewith deliver a powerful but still simple connectivity solution. Node configuration is managed using Ansible (securely via ssh over WireGuard).
 
 The Towalink Controller
@@ -9,11 +9,11 @@ The Towalink Controller
 
 The Towalink Controller is the central place of configuration for your Towalink installation. It is also the central place to collect status information and monitoring information from the individual Nodes.
 
-Apart from that, the Controller is not required in operating your Towalink installation. The connectity solution itself works fully decentrally so that you don't lose connectivity in case the Controller is not available or cannot be reached for whatever reasons. This eases operation considerably compared to other solutions since the Controller does not need to be highly available. Reliability with simplicity is the mantra here.
+Apart from that, the Controller is not required in operating your Towalink installation. The connectivity solution itself works fully decentrally so that you don't lose connectivity in case the Controller is not available or cannot be reached for whatever reasons. This eases operation considerably compared to other solutions since the Controller does not need to be highly available. Reliability with simplicity is the mantra here.
 
 The Controller software can either be run on-premises or in the public cloud. It is developed on Debian Linux so that Debian is the preferred distribution to use for the Controller.
 
-The Controller keeps a hierarchical configuration: global-level, Site-level, Node-level. The configuration on each level consists of attribute-value pairs (attribute name and attribute value). There's sensible defaults for almost all values so that you can start right away if desired. Configuration from higher levels is inherited towards lower levels unless explicitly overwritten on lower levels.
+The Controller keeps a hierarchical configuration: global-level, Site-level, Node-level. The configuration on each level consists of attribute-value pairs (attribute name and attribute value). There are sensible defaults for almost all values so that you can start right away if desired. Configuration from higher levels is inherited towards lower levels unless explicitly overwritten on lower levels.
 
 * global configuration: configuration data that is used for all Sites and Nodes unless explicitly overwritten at a lower level (i.e. Site level or Node level).
 
@@ -26,7 +26,7 @@ The first thing to do for a new Towalink installation is to install the Towalink
 The Towalink Nodes
 ==================
 
-Towalink Nodes are the individual routers located at the different sites. The Node software can even be run on low-cost hardware like the Raspberry Pi (version 4 is recommended due to the Gigabit-capable ethernet interface) while still providing considerable connection bandwidths.
+Towalink Nodes are the individual routers located at the different sites. The Node software can even be run on low-cost hardware like the Raspberry Pi (version 4 is recommended due to the Gigabit-capable Ethernet interface) while still providing considerable connection bandwidths.
 
 Nodes connect to the Towalink Controller via a secure tunnel (a WireGuard tunnel) to gather configuration updates and to deliver status information and monitoring data.
 
@@ -66,7 +66,7 @@ To add your first Site (in the example "mysite1"), issue the following command o
 
    tlm add site mysite1
 
-If this is your first command execured, this creates the configuration directory "/etc/towalink" and also creates default template files. Afterwards the Site is created as specified.
+If this is your first command executed, this creates the configuration directory "/etc/towalink" and also creates default template files. Afterwards the Site is created as specified.
 
 Adding a Node
 -------------

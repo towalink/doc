@@ -68,7 +68,7 @@ How to request an "enhancement"
 
 Write an email if you like to suggest a feature to a project but that is not a bug/problem with the existing code.
 
-In case you request an enhancement for business needs, consider donating to support the developement.
+In case you request an enhancement for business needs, consider donating to support the development.
 
 Recognition model
 -----------------
