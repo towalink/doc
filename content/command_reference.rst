@@ -303,6 +303,7 @@ Example:
 
    tlm set node 15 wg_keepalive 25
    tlm set node primary.mysite1 wg_keepalive 25
+   tlm set node main.hubsite groups '[ "hubs" ]'
 
 
 Config change management
@@ -334,17 +335,17 @@ Command:
 
 .. code-block:: shell
 
-   tlm commit all
+   tlm [-m <message>] commit all
     
 Parameters:
 
-   no parameters
+   <message>: commit message
 
 Example:
 
 .. code-block:: shell
 
-   tlm commit all
+   tlm -m "Change debug level" commit all
 
 Commit the configuration of a Site's Nodes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -353,17 +354,18 @@ Command:
 
 .. code-block:: shell
 
-   tlm commit site <sitename>
+   tlm [-m <message>] commit site <sitename>
     
 Parameters:
 
+   <message>: commit message
    <sitename>: name of the Site whose configuration shall be committed
 
 Example:
 
 .. code-block:: shell
 
-   tlm commit site mysite1
+   tlm -m "Change debug level" commit site mysite1
 
 Commit the configuration of a single Node
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -372,10 +374,11 @@ Command:
 
 .. code-block:: shell
 
-   tlm commit node <nodeid>|<nodename.sitename>
+   tlm [-m <message>] commit node <nodeid>|<nodename.sitename>
     
 Parameters:
 
+   <message>: commit message
    <nodeid>: numeric node identifier
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
@@ -383,8 +386,8 @@ Example:
 
 .. code-block:: shell
 
-   tlm commit node 15
-   tlm commit node primary.mysite1
+   tlm -m "Change debug level" commit node 15
+   tlm -m "Change debug level" commit node primary.mysite1
 
 
 Activate Node configuration
@@ -606,6 +609,28 @@ Example:
 
    tlm ansible_playbook node 15 myplaybook.yml -e test_variable="test"
    tlm ansible_playbook node primary.mysite1 myplaybook.yml -e test_variable="test"
+
+Executing git command
+---------------------
+
+Executing git
+^^^^^^^^^^^^^
+
+Command:
+
+.. code-block:: shell
+
+   tlm git <git arguments...>
+    
+Parameters:
+
+   <git arguments...>: arguments for git command
+
+Example:
+
+.. code-block:: shell
+
+   tlm git branch new-branch
 
 Setting the debug level
 -----------------------
