@@ -187,7 +187,7 @@ Command:
     
 Parameters:
 
-   <nodeid>: numeric node identifier \
+   <nodeid>: numeric node identifier \\
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Example:
@@ -226,7 +226,7 @@ Command:
     
 Parameters:
 
-   <nodeid>: numeric node identifier \
+   <nodeid>: numeric node identifier \  
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Examples:
@@ -251,7 +251,7 @@ Command:
     
 Parameters:
 
-   <attr>: name of the attribute that shall be set \
+   <attr>: name of the attribute that shall be set  
    <value>: new value for the attribute; special value "empty" to remove the attribute
 
 Example:
