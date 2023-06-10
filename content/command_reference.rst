@@ -104,6 +104,7 @@ Command:
 Parameters:
 
    <nodeid>: numeric node identifier
+
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Examples:
@@ -144,6 +145,7 @@ Command:
 Parameters:
 
    <nodeid>: numeric node identifier
+
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Examples:
@@ -188,6 +190,7 @@ Command:
 Parameters:
 
    <nodeid>: numeric node identifier
+
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Example:
@@ -227,6 +230,7 @@ Command:
 Parameters:
 
    <nodeid>: numeric node identifier
+
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Examples:
@@ -252,6 +256,7 @@ Command:
 Parameters:
 
    <attr>: name of the attribute that shall be set
+
    <value>: new value for the attribute; special value "empty" to remove the attribute
 
 Example:
@@ -272,7 +277,9 @@ Command:
 Parameters:
 
    <sitename>: name of the Site whose configuration shall be changed
+
    <attr>: name of the attribute that shall be set
+
    <value>: new value for the attribute; special value "empty" to remove the attribute
 
 Example:
@@ -293,8 +300,11 @@ Command:
 Parameters:
 
    <nodeid>: numeric node identifier
+
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
+
    <attr>: name of the attribute that shall be set
+
    <value>: new value for the attribute; special value "empty" to remove the attribute    
 
 Example:
@@ -359,6 +369,7 @@ Command:
 Parameters:
 
    <message>: commit message
+
    <sitename>: name of the Site whose configuration shall be committed
 
 Example:
@@ -379,7 +390,9 @@ Command:
 Parameters:
 
    <message>: commit message
+
    <nodeid>: numeric node identifier
+
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Example:
@@ -424,6 +437,7 @@ Command:
 Parameters:
 
    <sitename>: name of the Site whose configuration shall be activated
+
    <version>: version number of the configuration; "latest" is default
 
 Examples:
@@ -445,7 +459,9 @@ Command:
 Parameters:
 
    <nodeid>: numeric node identifier
+
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
+
    <version>: version number of the configuration; "latest" is default    
 
 Example:
@@ -474,6 +490,7 @@ Command:
 Parameters:
 
    <nodeid>: numeric node identifier
+
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Example:
@@ -516,6 +533,7 @@ Command:
 Parameters:
 
    <sitename>: name of the Site for whose Nodes Ansible shall be called
+
    <ansible arguments...>: arguments for Ansible
 
 Examples:
@@ -536,7 +554,9 @@ Command:
 Parameters:
 
    <nodeid>: numeric node identifier
+
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
+
    <ansible arguments...>: arguments for Ansible
 
 Example:
@@ -580,6 +600,7 @@ Command:
 Parameters:
 
    <sitename>: name of the Site for whose Nodes the Ansible Playbook shall be executed
+
    <ansible_playbook arguments...>: arguments for Ansible Playbook
 
 Examples:
@@ -600,7 +621,9 @@ Command:
 Parameters:
 
    <nodeid>: numeric node identifier
+
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
+
    <ansible_playbook arguments...>: arguments for Ansible Playbook
 
 Example:
@@ -610,11 +633,14 @@ Example:
    tlm ansible_playbook node 15 myplaybook.yml -e test_variable="test"
    tlm ansible_playbook node primary.mysite1 myplaybook.yml -e test_variable="test"
 
-Executing git command
----------------------
+Executing git commands
+----------------------
 
-Executing git
-^^^^^^^^^^^^^
+Run git executable
+^^^^^^^^^^^^^^^^^^
+
+You may execute any git command for the local repository that contains Towalink's configuration files.
+
 
 Command:
 
@@ -631,6 +657,7 @@ Example:
 .. code-block:: shell
 
    tlm git branch new-branch
+
 
 Setting the debug level
 -----------------------
