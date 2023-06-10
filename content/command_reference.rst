@@ -103,8 +103,7 @@ Command:
     
 Parameters:
 
-   <nodeid>: numeric node identifier
-
+   <nodeid>: numeric node identifier \
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Examples:
@@ -144,8 +143,7 @@ Command:
     
 Parameters:
 
-   <nodeid>: numeric node identifier
-
+   <nodeid>: numeric node identifier \
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Examples:
@@ -189,8 +187,7 @@ Command:
     
 Parameters:
 
-   <nodeid>: numeric node identifier
-
+   <nodeid>: numeric node identifier \
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Example:
@@ -229,8 +226,7 @@ Command:
     
 Parameters:
 
-   <nodeid>: numeric node identifier
-
+   <nodeid>: numeric node identifier \
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Examples:
@@ -255,8 +251,7 @@ Command:
     
 Parameters:
 
-   <attr>: name of the attribute that shall be set
-
+   <attr>: name of the attribute that shall be set \
    <value>: new value for the attribute; special value "empty" to remove the attribute
 
 Example:
@@ -276,10 +271,8 @@ Command:
     
 Parameters:
 
-   <sitename>: name of the Site whose configuration shall be changed
-
-   <attr>: name of the attribute that shall be set
-
+   <sitename>: name of the Site whose configuration shall be changed \
+   <attr>: name of the attribute that shall be set \
    <value>: new value for the attribute; special value "empty" to remove the attribute
 
 Example:
@@ -299,12 +292,9 @@ Command:
     
 Parameters:
 
-   <nodeid>: numeric node identifier
-
-   <nodename.sitename>: name of the Node within the given Site (identified by its name)
-
-   <attr>: name of the attribute that shall be set
-
+   <nodeid>: numeric node identifier \
+   <nodename.sitename>: name of the Node within the given Site (identified by its name) \
+   <attr>: name of the attribute that shall be set \
    <value>: new value for the attribute; special value "empty" to remove the attribute    
 
 Example:
@@ -368,8 +358,7 @@ Command:
     
 Parameters:
 
-   <message>: commit message
-
+   <message>: commit message \
    <sitename>: name of the Site whose configuration shall be committed
 
 Example:
@@ -389,10 +378,8 @@ Command:
     
 Parameters:
 
-   <message>: commit message
-
-   <nodeid>: numeric node identifier
-
+   <message>: commit message \
+   <nodeid>: numeric node identifier \
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Example:
@@ -436,8 +423,7 @@ Command:
     
 Parameters:
 
-   <sitename>: name of the Site whose configuration shall be activated
-
+   <sitename>: name of the Site whose configuration shall be activated \
    <version>: version number of the configuration; "latest" is default
 
 Examples:
@@ -458,10 +444,8 @@ Command:
     
 Parameters:
 
-   <nodeid>: numeric node identifier
-
-   <nodename.sitename>: name of the Node within the given Site (identified by its name)
-
+   <nodeid>: numeric node identifier \
+   <nodename.sitename>: name of the Node within the given Site (identified by its name) \
    <version>: version number of the configuration; "latest" is default    
 
 Example:
@@ -489,8 +473,7 @@ Command:
     
 Parameters:
 
-   <nodeid>: numeric node identifier
-
+   <nodeid>: numeric node identifier \
    <nodename.sitename>: name of the Node within the given Site (identified by its name)
 
 Example:
@@ -510,7 +493,7 @@ Command:
 .. code-block:: shell
 
    tlm ansible all <ansible arguments...>
-    
+
 Parameters:
 
    <ansible arguments...>: arguments for Ansible
@@ -532,8 +515,7 @@ Command:
     
 Parameters:
 
-   <sitename>: name of the Site for whose Nodes Ansible shall be called
-
+   <sitename>: name of the Site for whose Nodes Ansible shall be called \
    <ansible arguments...>: arguments for Ansible
 
 Examples:
@@ -553,10 +535,8 @@ Command:
     
 Parameters:
 
-   <nodeid>: numeric node identifier
-
-   <nodename.sitename>: name of the Node within the given Site (identified by its name)
-
+   <nodeid>: numeric node identifier \
+   <nodename.sitename>: name of the Node within the given Site (identified by its name) \
    <ansible arguments...>: arguments for Ansible
 
 Example:
@@ -599,8 +579,7 @@ Command:
     
 Parameters:
 
-   <sitename>: name of the Site for whose Nodes the Ansible Playbook shall be executed
-
+   <sitename>: name of the Site for whose Nodes the Ansible Playbook shall be executed \
    <ansible_playbook arguments...>: arguments for Ansible Playbook
 
 Examples:
@@ -620,10 +599,8 @@ Command:
     
 Parameters:
 
-   <nodeid>: numeric node identifier
-
-   <nodename.sitename>: name of the Node within the given Site (identified by its name)
-
+   <nodeid>: numeric node identifier \
+   <nodename.sitename>: name of the Node within the given Site (identified by its name) \
    <ansible_playbook arguments...>: arguments for Ansible Playbook
 
 Example:
