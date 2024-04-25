@@ -18,7 +18,7 @@ import os
 # -- Project information -----------------------------------------------------
 
 project = 'Towalink'
-copyright = '2020, Towalink project'
+copyright = '2020-2024, Towalink project'
 author = 'Towalink project'
 
 # The full version, including alpha/beta/rc tags

@@ -376,4 +376,19 @@ Why is this project called "Towalink"?
 --------------------------------------
 
 "towa" is Japanese for "forever", "permanent". "link" relates to the English network term: "having a link", "being connected".
-The "Towalink" therewith relates to its target: providing reliable connectivity.
+The term "Towalink" therewith relates to its target: providing reliable connectivity.
+
+Troubleshooting
+===============
+
+The following sections provide answers to issues that occured when using Towalink.
+
+Node management issues
+----------------------
+
+"tlm commit" is hanging when connecting
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Observed issue: "tlm commit" hangs at "Mirroring any existing configs to node..." and something like "2024-04-25 17:33:05,136 INFO filesync: Mirroring configs to fe80::c%tlwg_mgmt". There is no error message shown and no timeout either.
+
+Potential Resolution: The reason might by that the MTU of the "tlwg_mgmt" interface is too high. On IPv4 management connections over Internet accesses with DS-Lite, WireGuard's default MTU of 1420 is too high (set it to 1392 ["Mtu = 1392"] in the interface section of "/etc/wireguard/tlwg_mgmt.conf").
