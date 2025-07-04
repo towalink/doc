@@ -122,7 +122,7 @@ The Towalink Installer is used to install the Towalink Controller. Doing so is t
 Environment
 -----------
 
-The Towalink Installer can be used on Debian Linux. Use a Debian 10 Buster installation. Installation on Ubuntu might work as well but this is not tested so that issues can be expected.
+The Towalink Installer can be used on Debian Linux. Use a Debian 11 Bookworm installation. Installation on Ubuntu might work as well but this is not tested so that issues can be expected.
 
 The Towalink Controller can be run on top of any virtual machine (or physical server), be it within an on-premise installation or in the public cloud (using AWS EC2, Google Compute Engine, Azure Virtual Machines, or other vendors). Running it in a container is currently not supported since WireGuard support on the host would be required which cannot be installed automatically.
 
@@ -305,7 +305,7 @@ Environment
 There are currently two operating systems that are tested and known to work:
 
 * Alpine Linux (at time of writing v3.12 is current)
-* Raspberry Pi OS (previously called "Raspbian") (based on Debian v10 Buster)
+* Raspberry Pi OS (previously called "Raspbian") (based on Debian v10 Buster at time of writing)
 
 Alpine Linux uses the apk packet manager, Raspberry Pi OS the apt packet manager. Distributions based on the yum package manager (e.g. CentOS) are not yet supported.
 
